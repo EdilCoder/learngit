@@ -45,5 +45,14 @@ Github入门与实践
 查看文件内容 $ cat readme.txt
 找不到新版的 commit_id 使用 $ git relog 查看
 
+==========================================
+Git 底层是如何操作的
 
+当编辑一个内容后 工作区生成一个除了readme.txt之外的新的文件 LICENSE
+使用 $ git status 会提示我们 LICENSE 还没有被添加过 状态是 Untracked
+
+当使用 $ git add 就把生成的LICENSE文件从工作区转移到 版本库中的 暂存区中(Stage)
+当使用 $ git commit 就会把暂存区中 所有的修改提交到 版本库中的分区中(master) 指向master 的指针是 HEAD
+
+工作区 --> 生成LICENSE --> git add --> 转移到暂存区(Stage) --> git commit--> 提交到分区(master)中
 
