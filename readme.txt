@@ -25,5 +25,18 @@ Try another way.
 例如：Changes not staged for commit: 修改过但没提交
 
 使用 $ git diff 来查看修改具体内容是什么
+==========================================
+
+版本回退
+
+查看都有哪些版本 $ git log
+看着log太繁琐可以使用 $ git -pretty=oneline
+
+使用 $ git reset --hard HEAD^ 回退到上一个版本(旧的版本) 回退到上上个版本是 HADE^^ 回退到上100个版本是 HEAD~100
+使用 $ git reset --hard commit_id  再次回到最新版本
+
+查看文件内容 $ cat readme.txt
+找不到新版的 commit_id 使用 $ git relog 查看
+
 
 
