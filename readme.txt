@@ -3,6 +3,13 @@ Git is free software.
 Git is good.
 Try another way.
 ========================================
+
+学习Git网站：
+https://blog.csdn.net/mukes/article/details/115693833
+https://www.liaoxuefeng.com/wiki/896043488029600/897271968352576
+学习的书籍：
+Github入门与实践
+========================================
 初识Git：
 
 创建 文件夹使用 $ mkdir filename
