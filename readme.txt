@@ -206,4 +206,35 @@ git log --graph --pretty=oneline --abbrev-commit
 
 =======================================
 
+分支管理策略
+
+如果直接合并 git merge 
+那么Git 会直接使用 Fast forward模式
+这种模式下 删除分支 会丢失分支信息
+
+所以这次合并使用 --no-ff -m 的模式 可以对合并备注合并分支信息
+
+1.创建一个分支 编辑文本
+2.提交
+3.回到master
+4.合并 $ git merge --no-ff -m "合并分支信息" dev
+5.查看分支合并情况git log --graph --pretty=oneline --abbrev-commit
+
+---分支策略---
+
+master分支应该是非常稳定的 仅用来发布新版本 平时不能再上面干活
+
+干活都在dev上面 当1.0版本发布时 再把dev分支合并到master上面
+
+团队合作：
+
+master---------------
+      `---dev--`---dev
+         `      `--Tom-----
+	  `---Jack-----
+
+Tom和Jack一般都是在dev上干活，时不时的往dev分支合并就可以了
+
+========================================
+
 
