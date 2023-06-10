@@ -159,7 +159,26 @@ $ git clone git@github.com:你的github用户名/gitskills.git
 
 使用 $ git checkout -b dev 创建一个分支dev 并通过命令 -b 切换到该分支
 单独只创建分支使用 $ git branch dev
+单纯切换分支使用 $ git checkout dev
 
 使用 $ git branch 查看当前分支
+
+然后在dev分支中修改文本并提交
+
+dev分支工作完成后再切换回 master分支
+这时会发现刚在dev分支编辑的文本不见了 因为是在dev分支提交的
+
+现在再把dev分支内容合并到master当中 $ git merge dev （在master分支中执行）
+现在再查看文本就会有在dev分支中编辑的内容
+
+合并完成后就可以删除分支dev了 $ git branch -d dev 
+查看分支情况 $ git branch
+
+----------
+
+由于git checkout 同一种命令有两个作用 
+所以创建并切换分支的功能使用  $ git switch -c dev
+直接切换使用 $ git switch master
+
 
 ========================================
