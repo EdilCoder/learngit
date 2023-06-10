@@ -137,4 +137,19 @@ $ git remote rm origin(使用远程库名称)
 
 ======================================
 
+从远程(github)克隆仓库到本地
+
+1.先登录github创建一个新的仓库，名字叫gitskills
+2.勾选Initialize this repository with a README，这样GitHub会自动为我们创建一个README.md文件
+3.新的远程库就创建好了，现在通过本地库克隆远程库
+
+$ git clone git@github.com:你的github用户名/gitskills.git
+
+这样本地也就有了一份远程的库
+
+还可以通过这个地址去获取 https://github.com/你的github用户名/gitskills.git
+
+但ssh协议快
+
+========================================
 
