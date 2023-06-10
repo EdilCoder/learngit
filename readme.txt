@@ -153,3 +153,13 @@ $ git clone git@github.com:你的github用户名/gitskills.git
 
 ========================================
 
+分支管理
+
+创建和合并分支
+
+使用 $ git checkout -b dev 创建一个分支dev 并通过命令 -b 切换到该分支
+单独只创建分支使用 $ git branch dev
+
+使用 $ git branch 查看当前分支
+
+========================================
