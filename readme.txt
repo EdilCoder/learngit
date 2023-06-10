@@ -271,5 +271,21 @@ $ git stash drop 来清除stash中的内容
 并恢复指定的stash
 $ git stash apply stash@{0}
 
+---回到dev之后有一个问题---
+
+修复的文件是master的文件 
+修复好后master更新了
+但是dev中的readme.txt是修复前的 master文件 
+
+所以我们要更新dev中的 readme.txt 文件
+首先要在master分支当中 使用log找到 issue-101 的 commit_id (一串字母数字 前五位即可)
+然后返回dev中
+
+使用$ git cherry-pick commit_id(上一步的一串数字字母) 复制特定的提交到当前分支中
+这样就可以了，既可以有完整的备份也可以继续工作并上传提交合并
+
+
 ====================================
+
+
 
