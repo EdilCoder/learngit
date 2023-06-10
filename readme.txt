@@ -93,3 +93,48 @@ git checkout 其实是用版本库里的版本替换了工作区的版本 无论
 (删除只是一种操作命令，撤回只是撤回了删除的操作命令)
 ===========================================
 
+远程仓库操作
+
+添加远程仓库
+1.注册一个github账号
+2.在Git Bash中输入 $ ssh-keygen -t rsa -C "youremail@example.com" 用来创建SSH Key
+通过 $ cd ~/.ssh 找到路径 并且用 $ pwd 查看路径
+这时文件里有 id_rsa(私钥)  id_rsa.pub(公钥) 私钥不能泄露出去
+3.登录GitHub 打开SSH Keys页面 添加公钥 可以使用 $ cat ~/.ssh/id_rsa.pub 来查看公钥 并且复制到github中
+Title任意输入 之后Add Key 即可
+ ---------
+
+现在本地有了一个Git仓库 
+又想在Github中创建一个Git仓库 并且让这两个仓库进行远程同步 这样就可以使得Github中仓库作为备份
+也可以其他人通过该仓库来进行协作
+
+1.登录Github 右上角添加按钮 找到“Create a new repo” 创建一个新的仓库
+2.Repository name 填入 learngit 其他保持默认设置
+3.Create repository按钮 创建
+
+这就在github中创建好了 不过它是空的
+
+我们可以从这个仓库中克隆出新的仓库 也可以把一个已有的本地库与之关联
+
+在本地的 learngit仓库中 运行 $ git remote add origin git@github.com:你的github用户名/learngit.git
+远程的仓库名叫做 origin 也可以叫别的
+
+下一步就是把本地的库推送到远程库中
+$ git push -u origin master 意思是 
+把当前分支master推送到远程 第一次推送加 -u 不但会推送还会把本地mater和远程master关联起来
+
+刷新github之后就同步了
+
+之后只要在本地提交之后 通过命令
+$ git push origin master 就可以推送至github了
+
+---------------------------
+
+查看远程库信息
+$ git remote -v
+删除远程库
+$ git remote rm origin(使用远程库名称)
+
+======================================
+
+
