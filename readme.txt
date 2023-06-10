@@ -201,8 +201,9 @@ dev分支工作完成后再切换回 master分支
 10.git log 可以查看分支合并情况
 11.最后删除分支featurel
 
+使用这行来查看合并情况：
+git log --graph --pretty=oneline --abbrev-commit
 
 =======================================
 
 
->>>>>>> featurel
