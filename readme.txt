@@ -287,5 +287,28 @@ $ git stash apply stash@{0}
 
 ====================================
 
+Feature分支
+
+在实际开发过程中,总有新功能不断添加进来
+为了不把主分支搞乱了 没添加一个新功能就加一个feature分支 完成后再合并
+最后删除这个分支
+
+假设添加一个新功能 开发代号为Vulcan 该任务用于下一代飞船
+
+$ git switch -c feature-vulcan
+
+...五分钟后开发完毕，vulcan.py
+
+$ git add vulcan.py 提交
+$ git commit -m "add feature vulcan"
+
+切换回dev 准备合并
+一切顺利的话 feature和bug分支类似，合并然后删除
+但此时上级通知 新功能必须取消 因为经费不足
+
+$ git branch -d feature-vulcan 删除分支
+$ git branch -D feature-vulcan -D是强行删除
+
+=======================================
 
 
