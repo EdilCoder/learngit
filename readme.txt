@@ -311,4 +311,144 @@ $ git branch -D feature-vulcan -D是强行删除
 
 =======================================
 
+多人协作【重要】
+
+什么是多人协作？
+
+在github中有一个项目库
+有两个为此项目贡献的人 EdilCoder 和 yedel123
+这个github项目的发起者是 EdilCoder
+yedel123是来帮忙的(因此首先需要自己的github)
+
+在同一台电脑模拟(需要在另一个目录下克隆)
+
+--具体操作--
+
+1.在EdilCoder(learngit库)中查看 远程库的信息
+$ git remote -v
+
+origin  git@github.com:EdilCoder/learngit.git (fetch)
+origin  git@github.com:EdilCoder/learngit.git (push)
+
+2.推送分支到远程库中(EdilCoder本地库)
+$ git push orgin master
+
+3.推送其他分支 比如dev(EdilCoder本地库)
+$ git push orgin dev
+
+什么库值得推送？
+master分支是主分支，因此要时刻与远程同步
+dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步
+bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug
+feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发
+
+4.因为是模拟另一人，不过是在同一电脑中操作的
+
+a.打开另一个Git bash窗口 我这里是 d/learngit2 原来的是d/learngit
+
+b.在d/learngit2 中将github中EdilCoder的数据拷贝到自己的库中
+
+$ git clone git@github.com:EdilCoder/learngit.git
+
+c.克隆好了之后进入 d/learngit2/learngit 中(cd learngit)
+这时候 git branch 查看分支就会发现只能看到master分支
+
+5.在对yedel123的仓库 d/learngit2/learngit 操作前
+【确保】在 EdilCoder的仓库 d/learngit 中进行了【推送分支dev】的操作
+否则会报错： 
+fatal: 'origin/dev' is not a commit and a branch 'dev' cannot be created from it
+
+6.在yedel123的库 d/learngit2/learngit 中执行
+$ git checkout -b dev origin/dev 
+因为yedel123也要在 dev分支上开发
+所以必须创建远程origin的dev分支到本地
+
+现在就yedel123就可以在dev分支上进行编辑了
+
+7.创建一个文本文件 vi env.txt(yedel123的库 dev分支中)
+编辑文字 This is env. 保存退出
+add commit 进行提交
+
+8.进行上传远程的操作 
+$ git push origin dev
+这时yedel123 帮助 EdilCoder 编辑了一份文本文件
+
+9.这时EdilCoder也正好在自己的库中dev分支中编辑文本文件
+vi env.txt 并且编辑了文本 之后提交 add commit
+之后 git push origin dev 时显示冲突 发生了错误
+
+错误如下：
+ ! [rejected]        dev -> dev (non-fast-forward)
+error: failed to push some refs to 'git@github.com:michaelliao/learngit.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+这是因为yedel123最新提交和EdilCoder推送的提交有冲突
+
+10.解决办法
+
+$ git pull 把远程端的提交从 origin/dev 抓下来，然后在本地库合并，解决冲突，再推送
+
+但还是失败了，失败原因如下：
+
+原因是没有指定本地dev分支与远程origin/dev分支的链接 
+
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> dev
+
+11.根据上面提示 设置dev和origin/dev的链接
+
+$ git branch --set-upstream-to=origin/dev dev
+
+然后再 git pull
+
+12.这回成功拉下来，但是有合并冲突
+
+提示如下：
+
+Auto-merging env.txt
+CONFLICT (add/add): Merge conflict in env.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+13.可以用 git status 查看哪个文件发生了冲突
+然后 vi env.txt 编辑冲突
+再提交 add commit -m "fix env commit"
+最后进行 git push origin dev 上传至远程
+
+总结：
+
+1.可以试图用 git push origin branch_name 推送自己的
+2.如果推送失败，则因为远程分支比你本地更新一点，需要先用git pull试图合并
+3.如果合并有冲突，则先解决冲突，并在本地提交
+4.没有冲突或者解决冲突后再用 git push origin branch_name推送！
+
+！！如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream-to <branch-name> origin/<branch-name>
+
+--删除命令--
+
+删除指定的远程仓库
+git remote rm origin
+
+删除远程的分支
+git push origin --delete branch_name
+
+删除远程的tag
+git push origin --delete tag <tagname>
+
+删除本地仓库
+ls -a 找到目录.git
+rm -rf .git 删除
+
+
+==================================
+
 
